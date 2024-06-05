@@ -8,6 +8,7 @@ LIBS = -ldnsapi -lws2_32
 CXXFLAGS = $(FLAGS) $(LIBS)
 SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:.cpp=.o)
+STRIP = x86_64-w64-mingw32-strip
 
 TARGET = pwnsh.exe
 
@@ -20,6 +21,7 @@ clean:
 
 $(TARGET): $(OBJ)
 	$(CXX) -o $@ $^ $(CXXFLAGS)
+	$(STRIP) $@
 
 src/%.o: src/%.cpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
