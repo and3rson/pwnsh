@@ -8,7 +8,7 @@ Reverse shell over DNS для Windows (Pwn-Shell!)
 
 ## Компоненти
 
-- `client` - клієнтська аплікація на C++, будується за допомогою MinGW.
+- `client` - клієнтська аплікація на C, будується за допомогою MinGW.
 
   Не залежить від `libstdc++` для покращення переносності і зменшення розміру бінарника (жодних векторів та new/delete - тільки stdlib, тільки олдскул!)
 
@@ -21,6 +21,7 @@ Reverse shell over DNS для Windows (Pwn-Shell!)
   $ make
   $ # або:
   $ make DNS_SERVER=127.0.0.1 DNS_POLL_INTERVAL=1000
+  $ # Щоб приховати консоль, потрібно також додати SHOW_CONSOLE=0 до make
   $ ./pwnsh.exe
   ```
 

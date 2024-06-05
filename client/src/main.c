@@ -44,7 +44,14 @@ int query(const char* server, const char* hostname, char* response) {
     dnsServers.AddrCount = 1;
     dnsServers.AddrArray[0] = inet_addr(server);
 
-    status = DnsQuery_A(hostname, DNS_TYPE_TEXT, DNS_QUERY_STANDARD, &dnsServers, &pDnsRecord, NULL);
+    char query[512];
+    strcpy(query, hostname);
+    // Append trailing dot
+    if (query[strlen(query) - 1] != '.') {
+        strcat(query, ".");
+    }
+
+    status = DnsQuery_A(query, DNS_TYPE_TEXT, DNS_QUERY_STANDARD, &dnsServers, &pDnsRecord, NULL);
 
     if (status) {
         return 1;
